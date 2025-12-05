@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя семья – мой космос | Главная (Светлая тема)</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="media/images/logo.svg">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index-light.html" class="logo">
+                    <img src="media/images/logo.svg" alt="Логотип" onerror="this.src='media/images/logo.png'">
+                    <span>Моя семья – мой космос</span>
+                </a>
+                <button class="menu-toggle" aria-label="Меню">☰</button>
+                <nav>
+                    <a href="registration.html">Регистрация</a>
+                    <a href="#auth">Авторизация</a>
+                    <a href="account.html">Личный кабинет</a>
+                    <a href="#about">О нас</a>
+                    <a href="#competitions">Конкурсы</a>
+                    <a href="#search">Поиск</a>
+                    <a href="#contacts">Контакты</a>
+                    <button class="theme-toggle" aria-label="Переключить тему">🌓</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Слайдер популярных конкурсов -->
+        <section class="slider-section">
+            <div class="container">
+                <h2 class="section-title">Популярные конкурсы</h2>
+                <div class="slider">
+                    <button class="slider-arrows prev" aria-label="Предыдущий слайд">‹</button>
+                    <div class="slider-container">
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="media/images/competition1.jpg" alt="Семейный талант-шоу" class="slide-image" onerror="this.style.display='none'">
+                                <div class="slide-info">
+                                    <h3>Семейный талант-шоу</h3>
+                                    <p>Покажите свои таланты всей семье! Пение, танцы, игра на музыкальных инструментах - все приветствуется. Победители получат ценные призы и дипломы.</p>
+                                    <div class="rating">
+                                        <div class="rating-stars">
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                        </div>
+                                        <span class="rating-value">4.8</span>
+                                    </div>
+                                    <a href="competition.html" class="btn">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="media/images/competition2.jpg" alt="Конкурс семейных фотографий" class="slide-image" onerror="this.style.display='none'">
+                                <div class="slide-info">
+                                    <h3>Конкурс семейных фотографий</h3>
+                                    <p>Пришлите лучшие семейные фотографии! Самые трогательные, веселые и креативные снимки будут отмечены жюри. Фотографии будут выставлены на специальной экспозиции.</p>
+                                    <div class="rating">
+                                        <div class="rating-stars">
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                        </div>
+                                        <span class="rating-value">4.9</span>
+                                    </div>
+                                    <a href="competition.html" class="btn">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="media/images/competition3.jpg" alt="Спортивные семейные эстафеты" class="slide-image" onerror="this.style.display='none'">
+                                <div class="slide-info">
+                                    <h3>Спортивные семейные эстафеты</h3>
+                                    <p>Активные соревнования для всей семьи! Веселые эстафеты, спортивные конкурсы и командные игры. Отличная возможность проявить ловкость и сплоченность.</p>
+                                    <div class="rating">
+                                        <div class="rating-stars">
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                            <span class="star">★</span>
+                                        </div>
+                                        <span class="rating-value">4.7</span>
+                                    </div>
+                                    <a href="competition.html" class="btn">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-arrows next" aria-label="Следующий слайд">›</button>
+                    <div class="slider-indicators">
+                        <span class="indicator active"></span>
+                        <span class="indicator"></span>
+                        <span class="indicator"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция авторизации -->
+        <section id="auth" class="auth-section">
+            <div class="container">
+                <h2 class="section-title">Вход в личный кабинет</h2>
+                <div class="subscribe-form">
+                    <form id="authForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="authEmail">Адрес электронной почты</label>
+                            <input type="email" id="authEmail" name="email" placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="authPassword">Пароль</label>
+                            <input type="password" id="authPassword" name="password" placeholder="Введите пароль" required>
+                        </div>
+                        <div class="form-group">
+                            <a href="#" style="color: var(--accent-primary); text-decoration: none;">Забыли пароль?</a>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Войти</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "О нас" -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">О нас</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div>
+                        <img src="media/images/about.jpg" alt="О нас" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px var(--shadow);" onerror="this.style.display='none'">
+                    </div>
+                    <div id="aboutText" style="color: var(--text-secondary); line-height: 1.8;">
+                        <!-- Текст будет загружен из about.txt -->
+                        <p>Загрузка информации...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Видео-приветствие -->
+        <section class="video-section">
+            <div class="container">
+                <h2 class="section-title">Приветствие от организаторов</h2>
+                <div class="video-container">
+                    <video controls poster="media/images/video-poster.jpg" onerror="this.style.display='none'">
+                        <source src="media/video/hello.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает воспроизведение видео.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Конкурсы" -->
+        <section id="competitions" class="competitions-section">
+            <div class="container">
+                <h2 class="section-title">Конкурсы</h2>
+                <div class="competitions-grid" id="competitionsGrid">
+                    <!-- Карточки будут загружены динамически -->
+                    <div class="competition-card">
+                        <img src="media/images/competition1.jpg" alt="Конкурс" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%234a90e2%22 width=%22400%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2220%22%3EКонкурс%3C/text%3E%3C/svg%3E'">
+                        <div class="competition-card-content">
+                            <h3>Загрузка...</h3>
+                            <p>Информация о конкурсах загружается...</p>
+                            <div class="competition-stats">
+                                <span>Участников: 0</span>
+                                <div class="rating">
+                                    <span class="rating-value">0.0</span>
+                                </div>
+                            </div>
+                            <a href="competition.html" class="btn">Записаться</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Поиск конкурсов -->
+        <section id="search" class="search-section">
+            <div class="container">
+                <h2 class="section-title">Поиск конкурсов</h2>
+                <form class="search-form" id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Введите название или описание конкурса..." list="searchSuggestions">
+                    <datalist id="searchSuggestions">
+                        <option value="Семейный талант-шоу">
+                        <option value="Конкурс семейных фотографий">
+                        <option value="Спортивные семейные эстафеты">
+                        <option value="Кулинарный конкурс">
+                        <option value="Творческий конкурс">
+                    </datalist>
+                    <button type="submit" class="btn">Поиск</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Секция "Отзывы" -->
+        <section class="feedback-section">
+            <div class="container">
+                <h2 class="section-title">Отзывы участников</h2>
+                <div class="feedback-slider">
+                    <div class="feedback-container" id="feedbackContainer">
+                        <!-- Отзывы будут загружены динамически -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Форма подписки на новости -->
+        <section class="subscribe-section">
+            <div class="container">
+                <form class="subscribe-form" id="subscribeForm">
+                    <h2>Подписка на новости мероприятия</h2>
+                    <div class="subscribe-form-group">
+                        <input type="email" id="subscribeEmail" name="email" placeholder="Введите ваш email" required>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="subscribeAgree" name="agree" required>
+                        <label for="subscribeAgree">Я согласен(а) на обработку персональных данных</label>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Подписаться</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer id="contacts">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <a href="tel:+74842234567">+7 (4842) 23-45-67</a>
+                    <a href="mailto:family@cosmos.ru">family@cosmos.ru</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <a href="index.html">Главная</a>
+                    <a href="index-light.html">Главная-светлая</a>
+                    <a href="registration.html">Регистрация</a>
+                    <a href="competition.html">Конкурс</a>
+                    <a href="account.html">Личный кабинет</a>
+                    <a href="404.html">Страница не найдена</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 "Моя семья – мой космос". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Загрузка данных о конкурсах
+        async function loadCompetitionsData() {
+            try {
+                const response = await fetch('media/text/competitions.txt');
+                const text = await response.text();
+                const competitions = text.split('\n').filter(line => line.trim() !== '').slice(0, 5);
+                
+                const grid = document.getElementById('competitionsGrid');
+                grid.innerHTML = '';
+                
+                competitions.forEach((name, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'competition-card fade-in';
+                    card.innerHTML = `
+                        <img src="media/images/competition${index + 1}.jpg" alt="${name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%234a90e2%22 width=%22400%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2216%22%3E${encodeURIComponent(name)}%3C/text%3E%3C/svg%3E'">
+                        <div class="competition-card-content">
+                            <h3>${name}</h3>
+                            <p>Увлекательный конкурс для всей семьи. Присоединяйтесь и покажите свои таланты!</p>
+                            <div class="competition-stats">
+                                <span>Участников: ${Math.floor(Math.random() * 50) + 10}</span>
+                                <div class="rating">
+                                    <span class="rating-value">${(4 + Math.random()).toFixed(1)}</span>
+                                </div>
+                            </div>
+                            <a href="competition.html" class="btn">Записаться</a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading competitions:', error);
+            }
+        }
+
+        // Загрузка текста "О нас"
+        async function loadAboutText() {
+            try {
+                const response = await fetch('media/text/about.txt');
+                const text = await response.text();
+                const aboutDiv = document.getElementById('aboutText');
+                aboutDiv.innerHTML = text.split('\n').map(line => {
+                    if (line.trim() === '') return '<br>';
+                    if (line.startsWith('-')) return `<p style="margin-left: 20px;">${line}</p>`;
+                    return `<p>${line}</p>`;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading about text:', error);
+            }
+        }
+
+        // Загрузка отзывов
+        async function loadFeedbackData() {
+            try {
+                const response = await fetch('media/text/feedback.txt');
+                const text = await response.text();
+                const lines = text.split('\n').filter(line => line.trim() !== '');
+                const container = document.getElementById('feedbackContainer');
+                container.innerHTML = '';
+                
+                lines.forEach((line, index) => {
+                    const parts = line.split('|');
+                    if (parts.length >= 3) {
+                        const feedback = document.createElement('div');
+                        feedback.className = 'feedback-item fade-in';
+                        feedback.innerHTML = `
+                            <div class="feedback-header">
+                                <img src="media/images/avatar${index + 1}.jpg" alt="${parts[0]}" class="feedback-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%2230%22 fill=%22%234a90e2%22/%3E%3Ctext x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22%3E${encodeURIComponent(parts[0].charAt(0))}%3C/text%3E%3C/svg%3E'">
+                                <div>
+                                    <div class="feedback-author">${parts[0]}</div>
+                                    <div class="feedback-date">${parts[1]}</div>
+                                </div>
+                            </div>
+                            <p class="feedback-text">${parts[2]}</p>
+                            <a href="competition.html" class="btn">Подробнее о конкурсе</a>
+                        `;
+                        container.appendChild(feedback);
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading feedback:', error);
+            }
+        }
+
+        // Обработка форм
+        document.getElementById('authForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Функция авторизации будет реализована на бэкенде');
+        });
+
+        document.getElementById('subscribeForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Спасибо за подписку!');
+        });
+
+        document.getElementById('searchForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value;
+            alert(`Поиск по запросу: ${query}`);
+        });
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCompetitionsData();
+            loadAboutText();
+            loadFeedbackData();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | Моя семья – мой космос</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="media/images/logo.svg">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="media/images/logo.svg" alt="Логотип" onerror="this.src='media/images/logo.png'">
+                    <span>Моя семья – мой космос</span>
+                </a>
+                <button class="menu-toggle" aria-label="Меню">☰</button>
+                <nav>
+                    <a href="registration.html">Регистрация</a>
+                    <a href="index.html#auth">Авторизация</a>
+                    <a href="account.html">Личный кабинет</a>
+                    <a href="index.html#about">О нас</a>
+                    <a href="index.html#competitions">Конкурсы</a>
+                    <a href="index.html#search">Поиск</a>
+                    <a href="index.html#contacts">Контакты</a>
+                    <button class="theme-toggle" aria-label="Переключить тему">🌓</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="registration-section" style="padding: 4rem 0; min-height: 80vh;">
+            <div class="container">
+                <h1 class="section-title">Регистрация на мероприятие</h1>
+                
+                <form id="registrationForm" class="registration-form" style="max-width: 800px; margin: 0 auto; background: var(--bg-secondary); padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px var(--shadow);">
+                    
+                    <!-- Основные поля -->
+                    <div class="form-group">
+                        <label for="email">E-mail <span style="color: var(--error);">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
+                        <span class="field-error" id="emailError"></span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="firstName">Имя <span style="color: var(--error);">*</span></label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Иван" required>
+                            <span class="field-error" id="firstNameError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Фамилия <span style="color: var(--error);">*</span></label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Иванов" required>
+                            <span class="field-error" id="lastNameError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Возраст <span style="color: var(--error);">*</span></label>
+                        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                            <input type="number" id="age" name="age" placeholder="25" min="1" max="120" required style="flex: 1; min-width: 150px;">
+                            <span style="color: var(--text-secondary);">или</span>
+                            <input type="date" id="birthDate" name="birthDate" style="flex: 1; min-width: 150px;">
+                        </div>
+                        <span class="field-error" id="ageError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Пол <span style="color: var(--error);">*</span></label>
+                        <div style="display: flex; gap: 2rem; margin-top: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="gender" value="male" required>
+                                <span>Мужской</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="gender" value="female" required>
+                                <span>Женский</span>
+                            </label>
+                        </div>
+                        <span class="field-error" id="genderError"></span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="password">Пароль <span style="color: var(--error);">*</span></label>
+                            <input type="password" id="password" name="password" placeholder="Минимум 8 символов" required minlength="8">
+                            <span class="field-error" id="passwordError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Повтор пароля <span style="color: var(--error);">*</span></label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Повторите пароль" required>
+                            <span class="field-error" id="confirmPasswordError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Семейная фотография <span style="color: var(--error);">*</span></label>
+                        <div class="file-upload" id="photoUpload">
+                            <input type="file" id="familyPhoto" name="familyPhoto" accept="image/*" required>
+                            <label for="familyPhoto" class="file-upload-label">
+                                <div class="file-upload-icon">📷</div>
+                                <div>Нажмите для загрузки фотографии</div>
+                                <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Поддерживаемые форматы: JPG, PNG</div>
+                            </label>
+                            <div id="photoPreview" style="display: none; margin-top: 1rem;">
+                                <img id="previewImage" src="" alt="Предпросмотр" style="max-width: 200px; max-height: 200px; border-radius: 10px; border: 2px solid var(--border-color);">
+                            </div>
+                        </div>
+                        <span class="field-error" id="photoError"></span>
+                    </div>
+
+                    <!-- Члены семьи -->
+                    <div class="family-members-section" style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--border-color);">
+                        <h3 style="color: var(--accent-primary); margin-bottom: 1rem;">Члены семьи</h3>
+                        <div id="familyMembers">
+                            <!-- Динамически добавляемые поля -->
+                        </div>
+                        <button type="button" id="addFamilyMember" class="btn" style="margin-top: 1rem; background: var(--bg-tertiary);">
+                            + Добавить члена семьи
+                        </button>
+                    </div>
+
+                    <!-- Согласие -->
+                    <div class="checkbox-group" style="margin-top: 2rem;">
+                        <input type="checkbox" id="agree" name="agree" required>
+                        <label for="agree">Я согласен(а) на обработку персональных данных <span style="color: var(--error);">*</span></label>
+                        <span class="field-error" id="agreeError"></span>
+                    </div>
+
+                    <!-- Сообщения -->
+                    <div id="formMessage" class="message" style="display: none;"></div>
+
+                    <!-- Кнопка отправки -->
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 2rem; font-size: 1.2rem; padding: 1rem;">
+                        Зарегистрироваться
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <a href="tel:+74842234567">+7 (4842) 23-45-67</a>
+                    <a href="mailto:family@cosmos.ru">family@cosmos.ru</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <a href="index.html">Главная</a>
+                    <a href="index-light.html">Главная-светлая</a>
+                    <a href="registration.html">Регистрация</a>
+                    <a href="competition.html">Конкурс</a>
+                    <a href="account.html">Личный кабинет</a>
+                    <a href="404.html">Страница не найдена</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 "Моя семья – мой космос". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        let familyMemberCount = 0;
+
+        // Добавление члена семьи
+        document.getElementById('addFamilyMember').addEventListener('click', () => {
+            familyMemberCount++;
+            const memberDiv = document.createElement('div');
+            memberDiv.className = 'family-member' + familyMemberCount;
+            memberDiv.style.cssText = 'background: var(--bg-tertiary); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem; position: relative;';
+            memberDiv.innerHTML = `
+                <button type="button" class="remove-member" style="position: absolute; top: 10px; right: 10px; background: var(--error); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 1.2rem;">×</button>
+                <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Член семьи #${familyMemberCount}</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Фамилия</label>
+                        <input type="text" name="memberLastName${familyMemberCount}" placeholder="Иванова">
+                    </div>
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" name="memberFirstName${familyMemberCount}" placeholder="Мария">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                    <div class="form-group">
+                        <label>Возраст</label>
+                        <input type="number" name="memberAge${familyMemberCount}" placeholder="25" min="1" max="120">
+                    </div>
+                    <div class="form-group">
+                        <label>Пол</label>
+                        <select name="memberGender${familyMemberCount}" style="width: 100%; padding: 0.75rem; background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                            <option value="">Выберите пол</option>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            document.getElementById('familyMembers').appendChild(memberDiv);
+            
+            // Обработчик удаления
+            memberDiv.querySelector('.remove-member').addEventListener('click', () => {
+                memberDiv.remove();
+            });
+        });
+
+        // Предпросмотр фотографии
+        document.getElementById('familyPhoto').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const preview = document.getElementById('photoPreview');
+                    const img = document.getElementById('previewImage');
+                    img.src = event.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Валидация формы
+        function showError(fieldId, message) {
+            const errorSpan = document.getElementById(fieldId + 'Error');
+            if (errorSpan) {
+                errorSpan.textContent = message;
+                errorSpan.style.color = 'var(--error)';
+                errorSpan.style.display = 'block';
+                errorSpan.style.fontSize = '0.9rem';
+                errorSpan.style.marginTop = '0.5rem';
+            }
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.style.borderColor = 'var(--error)';
+            }
+        }
+
+        function clearError(fieldId) {
+            const errorSpan = document.getElementById(fieldId + 'Error');
+            if (errorSpan) {
+                errorSpan.textContent = '';
+                errorSpan.style.display = 'none';
+            }
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.style.borderColor = 'var(--border-color)';
+            }
+        }
+
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.textContent = message;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            if (type === 'success') {
+                messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Валидация email
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email && !emailRegex.test(email)) {
+                showError('email', 'Некорректный адрес электронной почты');
+            } else {
+                clearError('email');
+            }
+        });
+
+        // Валидация пароля
+        document.getElementById('password').addEventListener('blur', function() {
+            const password = this.value;
+            if (password && password.length < 8) {
+                showError('password', 'Пароль должен содержать минимум 8 символов');
+            } else {
+                clearError('password');
+            }
+        });
+
+        // Валидация повторного пароля
+        document.getElementById('confirmPassword').addEventListener('blur', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            if (confirmPassword && password !== confirmPassword) {
+                showError('confirmPassword', 'Пароли не совпадают');
+            } else {
+                clearError('confirmPassword');
+            }
+        });
+
+        // Валидация возраста
+        document.getElementById('age').addEventListener('blur', function() {
+            const age = parseInt(this.value);
+            if (age && (age < 1 || age > 120)) {
+                showError('age', 'Возраст должен быть от 1 до 120 лет');
+            } else {
+                clearError('age');
+            }
+        });
+
+        // Обработка отправки формы
+        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Очистка предыдущих ошибок
+            document.querySelectorAll('.field-error').forEach(el => {
+                el.textContent = '';
+                el.style.display = 'none';
+            });
+            
+            let isValid = true;
+            const formData = new FormData(e.target);
+            
+            // Проверка обязательных полей
+            const requiredFields = ['email', 'firstName', 'lastName', 'password', 'confirmPassword', 'familyPhoto'];
+            requiredFields.forEach(field => {
+                const value = formData.get(field);
+                if (!value) {
+                    showError(field, 'Это поле обязательно для заполнения');
+                    isValid = false;
+                }
+            });
+            
+            // Проверка возраста
+            const age = formData.get('age');
+            const birthDate = formData.get('birthDate');
+            if (!age && !birthDate) {
+                showError('age', 'Укажите возраст или дату рождения');
+                isValid = false;
+            }
+            
+            // Проверка пола
+            const gender = formData.get('gender');
+            if (!gender) {
+                showError('gender', 'Выберите пол');
+                isValid = false;
+            }
+            
+            // Проверка паролей
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            if (password !== confirmPassword) {
+                showError('confirmPassword', 'Пароли не совпадают');
+                isValid = false;
+            }
+            
+            // Проверка согласия
+            const agree = formData.get('agree');
+            if (!agree) {
+                showError('agree', 'Необходимо согласие на обработку персональных данных');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                showMessage('Регистрация успешно завершена! Данные отправлены на обработку.', 'success');
+                // Здесь будет отправка данных на сервер
+                setTimeout(() => {
+                    window.location.href = 'account.html';
+                }, 2000);
+            } else {
+                showMessage('Пожалуйста, исправьте ошибки в форме.', 'error');
+            }
+        });
+    </script>
+    <style>
+        .field-error {
+            display: none;
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</body>
+</html>
+
