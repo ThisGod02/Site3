@@ -70,3 +70,4 @@ document.addEventListener('DOMContentLoaded', () => {
 window.loadCompetitions = loadCompetitions;
 window.loadFeedback = loadFeedback;
 
+

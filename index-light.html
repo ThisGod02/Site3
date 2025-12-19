@@ -263,85 +263,205 @@
     <script>
         // Загрузка данных о конкурсах
         async function loadCompetitionsData() {
+            const grid = document.getElementById('competitionsGrid');
+            if (!grid) return;
+            
+            // Fallback данные
+            const fallbackCompetitions = [
+                'Семейный талант-шоу',
+                'Конкурс семейных фотографий',
+                'Спортивные семейные эстафеты',
+                'Кулинарный конкурс "Семейный рецепт"',
+                'Творческий конкурс "Семейная поделка"'
+            ];
+            
+            let competitions = fallbackCompetitions;
+            
             try {
                 const response = await fetch('media/text/competitions.txt');
-                const text = await response.text();
-                const competitions = text.split('\n').filter(line => line.trim() !== '').slice(0, 5);
-                
-                const grid = document.getElementById('competitionsGrid');
-                grid.innerHTML = '';
-                
-                competitions.forEach((name, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'competition-card fade-in';
-                    card.innerHTML = `
-                        <img src="media/images/competition${index + 1}.jpg" alt="${name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%234a90e2%22 width=%22400%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2216%22%3E${encodeURIComponent(name)}%3C/text%3E%3C/svg%3E'">
-                        <div class="competition-card-content">
-                            <h3>${name}</h3>
-                            <p>Увлекательный конкурс для всей семьи. Присоединяйтесь и покажите свои таланты!</p>
-                            <div class="competition-stats">
-                                <span>Участников: ${Math.floor(Math.random() * 50) + 10}</span>
-                                <div class="rating">
-                                    <span class="rating-value">${(4 + Math.random()).toFixed(1)}</span>
-                                </div>
-                            </div>
-                            <a href="competition.html" class="btn">Записаться</a>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
+                if (response.ok) {
+                    const text = await response.text();
+                    const loaded = text.split('\n').filter(line => line.trim() !== '').slice(0, 5);
+                    if (loaded.length > 0) {
+                        competitions = loaded;
+                    }
+                }
             } catch (error) {
-                console.error('Error loading competitions:', error);
+                console.warn('Не удалось загрузить competitions.txt, используются данные по умолчанию:', error);
             }
+            
+            grid.innerHTML = '';
+            
+            competitions.forEach((name, index) => {
+                const card = document.createElement('div');
+                card.className = 'competition-card fade-in';
+                card.innerHTML = `
+                    <img src="media/images/competition${index + 1}.jpg" alt="${name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect fill=%22%234a90e2%22 width=%22400%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2216%22%3E${encodeURIComponent(name)}%3C/text%3E%3C/svg%3E'">
+                    <div class="competition-card-content">
+                        <h3>${name}</h3>
+                        <p>Увлекательный конкурс для всей семьи. Присоединяйтесь и покажите свои таланты!</p>
+                        <div class="competition-stats">
+                            <span>Участников: ${Math.floor(Math.random() * 50) + 10}</span>
+                            <div class="rating">
+                                <span class="rating-value">${(4 + Math.random()).toFixed(1)}</span>
+                            </div>
+                        </div>
+                        <a href="competition.html" class="btn">Записаться</a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
 
         // Загрузка текста "О нас"
         async function loadAboutText() {
+            const aboutDiv = document.getElementById('aboutText');
+            if (!aboutDiv) return;
+            
+            // Fallback текст
+            const fallbackText = `Добро пожаловать на праздник Года семьи "Моя семья – мой космос"!
+
+Мы рады приветствовать вас на нашем уникальном мероприятии, посвященном укреплению семейных ценностей и созданию незабываемых воспоминаний. Наш праздник объединяет семьи со всего региона для участия в увлекательных конкурсах, творческих мастер-классах и веселых развлечениях.
+
+Наша миссия - создать пространство, где каждая семья может проявить свои таланты, укрепить связи между поколениями и найти новых друзей. Мы верим, что семья - это основа общества, и именно в семье закладываются самые важные ценности.
+
+В течение всего дня вас ждут:
+- Увлекательные конкурсы для всех возрастов
+- Творческие мастер-классы
+- Развлекательная программа
+- Возможность познакомиться с другими семьями
+- Памятные подарки и награды
+
+Присоединяйтесь к нам и станьте частью этого незабываемого праздника!`;
+            
+            let text = fallbackText;
+            
             try {
                 const response = await fetch('media/text/about.txt');
-                const text = await response.text();
-                const aboutDiv = document.getElementById('aboutText');
-                aboutDiv.innerHTML = text.split('\n').map(line => {
-                    if (line.trim() === '') return '<br>';
-                    if (line.startsWith('-')) return `<p style="margin-left: 20px;">${line}</p>`;
-                    return `<p>${line}</p>`;
-                }).join('');
+                if (response.ok) {
+                    const loaded = await response.text();
+                    if (loaded.trim()) {
+                        text = loaded;
+                    }
+                }
             } catch (error) {
-                console.error('Error loading about text:', error);
+                console.warn('Не удалось загрузить about.txt, используется текст по умолчанию:', error);
             }
+            
+            aboutDiv.innerHTML = text.split('\n').map(line => {
+                if (line.trim() === '') return '<br>';
+                if (line.startsWith('-')) return `<p style="margin-left: 20px;">${line}</p>`;
+                return `<p>${line}</p>`;
+            }).join('');
         }
 
         // Загрузка отзывов
         async function loadFeedbackData() {
+            const container = document.getElementById('feedbackContainer');
+            if (!container) return;
+            
+            // Fallback отзывы
+            const fallbackFeedback = [
+                'Иван Петров|2023-06-15|Отличное мероприятие! Наша семья получила массу положительных эмоций. Дети были в восторге от конкурсов, а мы с супругой нашли новых друзей. Обязательно придем в следующем году!',
+                'Мария Сидорова|2023-06-20|Праздник превзошел все ожидания! Организация на высшем уровне, интересные конкурсы, дружелюбная атмосфера. Особенно понравился конкурс семейных фотографий. Спасибо организаторам!',
+                'Алексей Козлов|2023-07-01|Замечательное событие для всей семьи! Бабушка, родители и дети - все нашли себе занятие по душе. Очень понравилась творческая атмосфера и возможность проявить себя.',
+                'Елена Волкова|2023-07-10|Это был незабываемый день! Наша семья впервые участвовала в таком масштабном мероприятии. Дети до сих пор вспоминают конкурсы и новые знакомства. Рекомендую всем!',
+                'Дмитрий Новиков|2023-07-25|Отличная идея и прекрасная реализация! Конкурсы были разнообразными, подходили для разных возрастов. Особенно запомнился кулинарный конкурс - мы даже получили приз!'
+            ];
+            
+            let lines = fallbackFeedback;
+            
             try {
                 const response = await fetch('media/text/feedback.txt');
-                const text = await response.text();
-                const lines = text.split('\n').filter(line => line.trim() !== '');
-                const container = document.getElementById('feedbackContainer');
-                container.innerHTML = '';
-                
-                lines.forEach((line, index) => {
-                    const parts = line.split('|');
-                    if (parts.length >= 3) {
-                        const feedback = document.createElement('div');
-                        feedback.className = 'feedback-item fade-in';
-                        feedback.innerHTML = `
-                            <div class="feedback-header">
-                                <img src="media/images/avatar${index + 1}.jpg" alt="${parts[0]}" class="feedback-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%2230%22 fill=%22%234a90e2%22/%3E%3Ctext x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22%3E${encodeURIComponent(parts[0].charAt(0))}%3C/text%3E%3C/svg%3E'">
-                                <div>
-                                    <div class="feedback-author">${parts[0]}</div>
-                                    <div class="feedback-date">${parts[1]}</div>
-                                </div>
+                if (response.ok) {
+                    const text = await response.text();
+                    const loaded = text.split('\n').filter(line => line.trim() !== '');
+                    if (loaded.length > 0) {
+                        lines = loaded;
+                    }
+                }
+            } catch (error) {
+                console.warn('Не удалось загрузить feedback.txt, используются данные по умолчанию:', error);
+            }
+            
+            container.innerHTML = '';
+            
+            lines.forEach((line, index) => {
+                const parts = line.split('|');
+                if (parts.length >= 3) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'feedback-item fade-in';
+                    feedback.innerHTML = `
+                        <div class="feedback-header">
+                            <img src="media/images/avatar${index + 1}.jpg" alt="${parts[0]}" class="feedback-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%2230%22 fill=%22%234a90e2%22/%3E%3Ctext x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22%3E${encodeURIComponent(parts[0].charAt(0))}%3C/text%3E%3C/svg%3E'">
+                            <div>
+                                <div class="feedback-author">${parts[0]}</div>
+                                <div class="feedback-date">${parts[1]}</div>
                             </div>
-                            <p class="feedback-text">${parts[2]}</p>
-                            <a href="competition.html" class="btn">Подробнее о конкурсе</a>
-                        `;
-                        container.appendChild(feedback);
+                        </div>
+                        <p class="feedback-text">${parts[2]}</p>
+                        <a href="competition.html" class="btn">Подробнее о конкурсе</a>
+                    `;
+                    container.appendChild(feedback);
+                }
+            });
+        }
+
+        // Функциональность слайдера
+        function initSlider() {
+            const slider = document.querySelector('.slider-container');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.slider-arrows.prev');
+            const nextBtn = document.querySelector('.slider-arrows.next');
+            const slides = document.querySelectorAll('.slide');
+            
+            if (!slider || slides.length === 0) return;
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Обновление индикаторов
+                indicators.forEach((indicator, index) => {
+                    if (index === currentSlide) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
                     }
                 });
-            } catch (error) {
-                console.error('Error loading feedback:', error);
             }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }
+            
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            }
+            
+            // Обработчики кнопок
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextSlide);
+            }
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', prevSlide);
+            }
+            
+            // Обработчики индикаторов
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+            
+            // Инициализация
+            updateSlider();
         }
 
         // Обработка форм
@@ -366,8 +486,10 @@
             loadCompetitionsData();
             loadAboutText();
             loadFeedbackData();
+            initSlider();
         });
     </script>
 </body>
 </html>
+
 
